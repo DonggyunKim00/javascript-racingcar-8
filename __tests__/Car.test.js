@@ -10,12 +10,24 @@ describe('Car 클래스 테스트', () => {
     Random.pickNumberInRange.mockReturnValueOnce(4);
     const car = new Car('daniel');
     car.move();
-    expect(car.distance).toBe(1);
+    expect(car.getDistance()).toBe(1);
   });
 
   test('3 이하일 경우 전진하지 않는다.', () => {
     Random.pickNumberInRange.mockReturnValueOnce(3);
     const car = new Car('daniel');
-    expect(car.distance).toBe(0);
+    expect(car.getDistance()).toBe(0);
+  });
+
+  test('현재 이동 거리를 반환한다.', () => {
+    const car = new Car('daniel');
+    Random.pickNumberInRange
+      .mockReturnValueOnce(5)
+      .mockReturnValueOnce(7)
+      .mockReturnValueOnce(2);
+    car.move(); // 이동 O
+    car.move(); // 이동 O
+    car.move(); // 이동 X
+    expect(car.getDistance()).toBe(2);
   });
 });
