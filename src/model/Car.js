@@ -10,6 +10,10 @@ class Car {
     const random = Random.pickNumberInRange(0, 9);
     if (random >= 4) this.distance += 1;
   }
+
+  getDistance() {
+    return this.distance;
+  }
 }
 
 export default Car;
