@@ -30,4 +30,10 @@ describe('Car 클래스 테스트', () => {
     car.move(); // 이동 X
     expect(car.getDistance()).toBe(2);
   });
+
+  test('생성된 자동차 이름을 반환한다.', () => {
+    const car = new Car('daniel');
+
+    expect(car.getName()).toBe('daniel');
+  });
 });
