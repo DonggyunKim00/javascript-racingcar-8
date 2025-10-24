@@ -2,6 +2,8 @@ import {
   isDuplicate,
   isEmpty,
   isValidCarNameLength,
+  isValidCountRange,
+  isValidNumber,
 } from '../src/utils/validators.js';
 
 describe('validator 테스트', () => {
@@ -29,6 +31,18 @@ describe('validator 테스트', () => {
       expect(isValidCarNameLength(['', 'name'])).toBe(false);
       expect(isValidCarNameLength(['danie', '', 'pobi'])).toBe(false);
       expect(isValidCarNameLength(['@@@@@@', 'abc'])).toBe(false);
+    });
+  });
+
+  describe('이동 횟수 입력값 검증', () => {
+    test('숫자가 아니면 false를 반환한다.', () => {
+      expect(isValidNumber('abc')).toBe(false);
+      expect(isValidNumber('3a')).toBe(false);
+    });
+
+    test('0 이하 또는 10 초과이면 false를 반환한다.', () => {
+      expect(isValidCountRange('0')).toBe(false);
+      expect(isValidCountRange('11')).toBe(false);
     });
   });
 });
