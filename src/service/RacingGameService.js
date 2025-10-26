@@ -1,10 +1,11 @@
+import { SYMBOL } from '../constant/index.js';
 import Car from '../model/Car.js';
 
 class RacingGameService {
   #cars;
 
   constructor(cars) {
-    this.#cars = cars.split(',').map((name) => new Car(name));
+    this.#cars = cars.split(SYMBOL.SEPARATOR).map((name) => new Car(name));
   }
 
   getCarDistances() {

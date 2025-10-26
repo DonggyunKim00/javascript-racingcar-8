@@ -1,4 +1,5 @@
 import { Random } from '@woowacourse/mission-utils';
+import { MAGIC_NUMBER } from '../constant';
 
 class Car {
   #name;
@@ -11,7 +12,7 @@ class Car {
 
   move() {
     const random = Random.pickNumberInRange(0, 9);
-    if (random >= 4) this.#distance += 1;
+    if (random >= MAGIC_NUMBER.MOVE_THRESHOLD) this.#distance += 1;
   }
 
   getDistance() {

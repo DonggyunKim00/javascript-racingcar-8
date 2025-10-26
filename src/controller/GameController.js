@@ -9,6 +9,7 @@ import {
 import Input from '../view/Input.js';
 import Output from '../view/Output.js';
 import Winner from '../model/Winner.js';
+import { ERROR_MESSAGE, SYMBOL } from '../constant/index.js';
 
 class GameController {
   #service;
@@ -52,23 +53,20 @@ class GameController {
   }
 
   static #validateCarNamesInput(carNames) {
-    const splitCarNames = carNames.split(',');
+    const splitCarNames = carNames.split(SYMBOL.SEPARATOR);
 
-    if (isEmpty(carNames)) throw Error('[ERROR] 빈 값은 입력할 수 없습니다.');
+    if (isEmpty(carNames)) throw Error(ERROR_MESSAGE.EMPTY_INPUT);
     if (isDuplicate(splitCarNames))
-      throw Error('[ERROR] 중복된 자동차 이름은 허용되지 않습니다.');
+      throw Error(ERROR_MESSAGE.DUPLICATE_CAR_NAME);
     if (!isValidCarNameLength(splitCarNames))
-      throw Error(
-        '[ERROR] 각 자동차 이름은 1자 이상 5자 이하로 입력해야 합니다.'
-      );
+      throw Error(ERROR_MESSAGE.INVALID_CAR_NAME_LENGTH);
   }
 
   static #validateRoundCountInput(roundCount) {
-    if (isEmpty(roundCount)) throw Error('[ERROR] 빈 값은 입력할 수 없습니다.');
-    if (!isValidNumber(roundCount))
-      throw Error('[ERROR] 숫자만 입력할 수 있습니다.');
+    if (isEmpty(roundCount)) throw Error(ERROR_MESSAGE.EMPTY_INPUT);
+    if (!isValidNumber(roundCount)) throw Error(ERROR_MESSAGE.INVALID_NUMBER);
     if (!isValidCountRange(roundCount))
-      throw Error('[ERROR] 이동 횟수는 1 이상 10 이하만 가능합니다.');
+      throw Error(ERROR_MESSAGE.INVALID_COUNT_RANGE);
   }
 }
 
