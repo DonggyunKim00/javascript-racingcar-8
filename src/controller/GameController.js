@@ -8,6 +8,7 @@ import {
 } from '../utils/validators.js';
 import Input from '../view/Input.js';
 import Output from '../view/Output.js';
+import Winner from '../model/Winner.js';
 
 class GameController {
   #service;
@@ -29,7 +30,7 @@ class GameController {
     this.roundCount = Number(roundCount);
   }
 
-  // 라운드 반복 실행
+  // 라운드 반복 실행 및 실행 결과 출력
   playRounds() {
     Output.printResultIntro();
 
@@ -38,6 +39,16 @@ class GameController {
       const singleRoundInfo = this.#service.getCarDistances();
       Output.printRoundResult(singleRoundInfo);
     }
+  }
+
+  // 최종 우승자 계산 및 우승자 출력
+  pickWinners() {
+    const finalRoundResult = this.#service.getCarDistances();
+    const winners = new Winner(finalRoundResult)
+      .getWinners()
+      .map((car) => car.name);
+
+    Output.printWinners(winners);
   }
 
   static #validateCarNamesInput(carNames) {
