@@ -31,16 +31,14 @@ class GameController {
 
   // 라운드 반복 실행
   playRounds() {
-    Output.resultIntro();
+    Output.printResultIntro();
 
     for (let i = 0; i < this.roundCount; i += 1) {
       this.#service.playRound();
       const singleRoundInfo = this.#service.getCarDistances();
-      Output.showRoundResult(singleRoundInfo);
+      Output.printRoundResult(singleRoundInfo);
     }
   }
-
-  // 최종 우승자 출력
 
   static #validateCarNamesInput(carNames) {
     const splitCarNames = carNames.split(',');
