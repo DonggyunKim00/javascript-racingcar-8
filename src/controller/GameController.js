@@ -7,12 +7,14 @@ import {
   isValidNumber,
 } from '../utils/validators.js';
 import Input from '../view/Input.js';
+import Output from '../view/Output.js';
 
 class GameController {
   #service;
 
   constructor() {
     this.#service = null;
+    this.roundCount = 0;
   }
 
   // 사용자 입력 및 게임 초기화
@@ -24,7 +26,21 @@ class GameController {
     GameController.#validateRoundCountInput(roundCount);
 
     this.#service = new RacingGameService(carNames);
+    this.roundCount = Number(roundCount);
   }
+
+  // 라운드 반복 실행
+  playRounds() {
+    Output.resultIntro();
+
+    for (let i = 0; i < this.roundCount; i += 1) {
+      this.#service.playRound();
+      const singleRoundInfo = this.#service.getCarDistances();
+      Output.showRoundResult(singleRoundInfo);
+    }
+  }
+
+  // 최종 우승자 출력
 
   static #validateCarNamesInput(carNames) {
     const splitCarNames = carNames.split(',');
