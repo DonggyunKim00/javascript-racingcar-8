@@ -5,37 +5,27 @@
 > Controller → Service → Model → View 구조
 
 ```
-1. GameController.run()
-   - 프로그램의 전체 실행 흐름을 관리한다.
-   - 사용자 입력을 받고 RacingGameService를 초기화한다.
+1. GameController.init()
+   - 사용자 입력을 받고 게임을 초기화한다.
+   - 자동차 이름(carNames)과 이동 횟수(roundCount)를 입력받는다.
+   - 입력값 검증 후 자동차를 생성하고, 이동 횟수를 저장한다.
 
-2. Input.readCarNames()
-   - 경주에 참여할 자동차 이름을 입력받는다.
+2. RacingGameService(carNames)
+   - 전달받은 이름들을 기반으로 Car 인스턴스를 생성한다.
+   - 각 자동차는 독립적으로 이동 거리를 관리한다.
 
-3. Input.readRoundCount()
-   - 몇 번의 이동(라운드)을 진행할지 입력받는다.
+3. GameController.playRounds()
+   - 게임의 모든 라운드를 roundCount만큼 순차적으로 실행한다.
+   - 각 라운드별 이동 결과를 자동차 이름과 '-' 개수로 표현해 출력한다.
 
-4. RacingGameService(carNames)
-   - 전달받은 자동차 이름을 기반으로 Car 인스턴스를 생성한다.
-   - 게임에 필요한 초기 상태를 설정한다.
-
-5. RacingGameService.playRound()
+4. RacingGameService.playRound()
    - 한 라운드를 진행한다.
-   - 생성된 모든 자동차에 대해 move()를 호출한다.
+   - 모든 자동차에 대해 move()를 호출해 전진 여부를 결정한다.
 
-6. Controller 반복 제어
-   - roundCount 횟수만큼 playRound()를 반복 실행한다.
-   - 각 라운드 이후 결과를 View로 전달한다.
 
-7. Output.showRoundResult()
-   - 각 라운드가 끝날 때 모든 자동차의 이동 결과를 출력한다.
-
-8. Winner(carDistanceInfos).getWinner()
-   - 모든 자동차의 이동 거리 정보를 기반으로 우승자를 계산한다.
-
-9. Output.showWinners()
-   - 최종 우승자를 출력한다.
-   - 복수의 우승자가 있을 경우 쉼표(,)로 구분한다.
+5. GameController.pickWinners()
+   - 마지막 라운드 결과를 기반 우승자 목록을 계산한다.
+   - 최종 우승자 목록을 쉼표(,)로 구분해 출력한다.
 ```
 
 ## 📚 기능 명세서
