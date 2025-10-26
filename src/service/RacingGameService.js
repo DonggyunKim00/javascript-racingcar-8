@@ -13,6 +13,10 @@ class RacingGameService {
       distance: car.getDistance(),
     }));
   }
+
+  playRound() {
+    this.#cars.forEach((car) => car.move());
+  }
 }
 
 export default RacingGameService;

@@ -21,10 +21,7 @@
 
 5. RacingGameService.playRound()
    - 한 라운드를 진행한다.
-     5-1. Car.move()
-          - 무작위 값(0~9) 중 4 이상일 경우 자동차를 전진시킨다.
-     5-2. Car.getDistance()
-          - 각 자동차의 현재 이동 거리를 반환한다.
+   - 생성된 모든 자동차에 대해 move()를 호출한다.
 
 6. Controller 반복 제어
    - roundCount 횟수만큼 playRound()를 반복 실행한다.
@@ -69,7 +66,7 @@
 4. Service
    - RacingGameService
      - [x] 입력받은 자동차 이름을 기반으로 자동차(Car)들을 생성할 수 있다.
-     - [ ] 한 번의 라운드를 진행하며, 각 자동차의 이동을 처리할 수 있다.
+     - [x] 한 번의 라운드를 진행하며, 각 자동차의 이동을 처리할 수 있다.
      - [x] 모든 자동차의 현재 이동 거리 정보를 반환할 수 있다.
 
 5. Validator
