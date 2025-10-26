@@ -10,6 +10,10 @@ class Output {
     const result = formatRoundResult(results);
     MissionUtils.Console.print(`${result}\n`);
   }
+
+  static showWinners(winners) {
+    MissionUtils.Console.print(`최종 우승자 : ${winners.join(', ')}`);
+  }
 }
 
 export default Output;
